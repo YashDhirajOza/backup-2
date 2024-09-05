@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="icon" href="/logo.svg">
+</head>
+<body>
+<div class="container">
+  <div class="left-section">
+    <img src="/img/pillars.png" alt="Justice Scales and Pillars">
+  </div>
+  <div class="right-section">
+    <a href="index.html" class="back-link">&larr; Back</a>
+    <h2>Account Login</h2>
+    <p>If you are already registered you can login with your email address and password.</p>
+    <form id="login-form">
+      <label for="phone">Phone No.</label>
+      <input type="text" id="phone" name="phone">
+
+      <label for="password">Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password">
+        <img src="/img/eye.svg" alt="View Password" class="toggle-password" id="toggle-password">
+      </div>
+
+      <div class="remember-me">
+        <input type="checkbox" id="remember-me" name="remember-me">
+        <label for="remember-me">Remember me</label>
+      </div>
+      <button type="submit" class="login-button"><a href="#" class="tagstyle">Login</a></button>
+    </form>
+    <div id="error-message">Invalid phone number or password, please try again.</div>
+    <p>Don’t have an account? <a href="signup.html">Register here</a></p>
+  </div>
+</div>
+
+<script>
+  const validPhoneNumber = "9876543210";  // Replace with your actual valid phone number
+  const validPassword = "quantamcoders";  // Replace with your actual password
+
+  // Login form submission handler
+  document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Hide the error message initially
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.style.display = "none";
+
+    // Get user input values
+    const phoneNumber = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+
+    // Validate the inputs
+    if (phoneNumber === validPhoneNumber && password === validPassword) {
+      alert("Login Successful.....")
+      // Redirect to the authenticated page or dashboard
+      navigateToPage('home.html');
+    } else {
+      // Show error message
+      errorMessage.style.display = "block";
+    }
+  });
+
+  document.getElementById('toggle-password').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const togglePasswordIcon = document.getElementById('toggle-password');
+
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      togglePasswordIcon.src = '/img/eyeslash.svg';  // Update this to the "eye-slash" icon
+    } else {
+      passwordField.type = 'password';
+      togglePasswordIcon.src = '/img/eye.svg';  // Update this to the "eye" icon
+    }
+  });
+  function navigateToPage(page) {
+    window.location.href = page;
+  }
+
+</script>
+</body>
+</html>
